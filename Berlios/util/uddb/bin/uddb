@@ -1,0 +1,158 @@
+#!/usr/bin/perl -w
+
+# 
+# uddb - Update Debian Database script
+#
+# This script examines a debian repo for Packages listings
+# and places new items in a mysql database for later
+# viewing and collation by a server side web-based script
+#
+# usage: uddb
+#
+# $Author: asg $
+# $Revision: 1.1 $
+#
+use strict;
+
+#######################################
+###   USER CONFIGURATION VARIBLES   ###
+#######################################
+
+# REPO_ROOT -- The root of the debian repository to check
+my $REPO_ROOT		=	"";
+
+#######################################
+### DATABASE CONFIGURATION VARIBLES ###
+#######################################
+
+# SERVER -- The database server to connect to
+my $SERVER			=	"";
+
+# DATABASE -- The database to connect to
+my $DATABASE		=	"";
+
+# DBLOGIN -- The database login username
+my $DBLOGIN			=	"";
+
+# DBPASS -- The database password
+my $DBPASS			= 	"";
+
+# DEBUG -- debug the database actions
+my $DEBUG			=	1;
+
+#######################################
+###        END CONFIGURATION        ###
+#######################################
+
+use DBI;
+use DBD::mysql;
+
+# Slurp up the relevant Packages filenames
+my @files = `find $REPO_ROOT/ -type f -name 'Packages' -size +0 -print`;
+
+# Database connection 
+my $dbh = DBI->connect(
+	"DBI:mysql:database=$DATABASE;host=$SERVER",
+	"$DBLOGIN", 
+	"$DBPASS",
+	{'RaiseError' => $DEBUG}
+	);
+
+# Lock tables for speed
+$dbh->do("LOCK TABLES packages WRITE;");
+
+# A quick and dirty way to ensure that old
+# entries do not propagate
+$dbh->do("DELETE FROM packages;");
+
+# Cycle over all Packages files that contain something
+foreach my $file (@files) {
+	chomp($file);
+
+	# Open each Packages file
+	open(FILE, "<$file") or warn "Packages file ($file) is not a file"; 
+
+	# temp var to hold data to go in db fields
+	my (
+		$pkg_version,
+		$pkg_name,
+		$pkg_priority,
+		$pkg_section,
+		$pkg_maintainer,
+		$pkg_arch,
+		$pkg_size,
+		$pkg_filename,
+		$pkg_md5sum,
+		$pkg_installed_size,
+		$pkg_distro
+	);
+
+	# Slurp each package descriptor in the file
+	while(<FILE>) {
+
+		# indicates end of descriptor
+		if(/^$/) {
+
+			# insert into database
+			$dbh->do("
+				INSERT INTO packages 
+				(
+				  	pkg_version,
+					pkg_name,
+					pkg_priority,
+					pkg_section,
+					pkg_maintainer,
+					pkg_arch,
+					pkg_size,
+					pkg_filename,
+					pkg_md5sum,
+					pkg_installed_size,
+					pkg_distro
+				)
+					VALUES
+				(
+					'$pkg_version',
+					'$pkg_name',
+					'$pkg_priority',
+					'$pkg_section',
+					'$pkg_maintainer',
+					'$pkg_arch',
+					 $pkg_size,
+					'$pkg_filename',
+					'$pkg_md5sum',
+					'$pkg_installed_size',
+					'$pkg_distro'
+				)");
+		} else {
+
+			# pick off relevant fields we want
+			chomp;
+			/^Package: (.*$)/ and $pkg_name = $1;
+			/^Version: (.*$)/ and $pkg_version = $1;
+			/^Priority: (.*$)/ and $pkg_priority = $1;
+			/^Section: (.*$)/ and $pkg_section = $1;
+			/^Maintainer: (.*$)/ and $pkg_maintainer = $1;
+			/^Architecture: (.*$)/ and $pkg_arch = $1;
+			/^Size: (.*$)/ and $pkg_size = $1;
+
+			# determine distro from filename
+			if(/^Filename: (.*$)/) {
+				my $pd = $1;
+				$pkg_filename = $pd;
+				$pkg_distro = 'unknown';
+				if( $pd =~ /stable\// ) { $pkg_distro = 'stable'; }
+				if( $pd =~ /testing\// ) { $pkg_distro = 'testing'; }
+				if( $pd =~ /unstable\// ) { $pkg_distro = 'unstable'; }
+			}
+			/^MD5sum: (.*$)/ and $pkg_md5sum = $1;
+			/^installed-size: (.*$)/ and $pkg_installed_size = $1;
+		}
+	}
+
+	# clean up
+	close(FILE);
+}
+
+$dbh->do('UNLOCK TABLES;');
+
+$dbh->disconnect();
