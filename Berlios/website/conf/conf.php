@@ -1,6 +1,6 @@
 <?
 /*
- * $Id: conf.php,v 1.2 2003/12/12 23:27:58 asg Exp $
+ * $Id: conf.php,v 1.3 2003/12/12 23:35:22 asg Exp $
  */
 
 // Database Server
@@ -19,5 +19,5 @@ $DBPASS				=	"";
 // the 'pkg_filename' in the database
 // to produce a URL for downloading each
 // available deb
-$DLSTEM				=	"debian";
+$DLSTEM				=	"/debian";
 ?>
