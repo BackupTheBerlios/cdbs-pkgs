@@ -3,7 +3,7 @@
 
 /* CDBS Packages Index Page
  *
- * $Id: index.php,v 1.4 2003/12/13 00:19:55 asg Exp $
+ * $Id: index.php,v 1.5 2003/12/13 00:30:36 asg Exp $
  */
 
 //Include Credentials
@@ -11,11 +11,11 @@ include("./conf/conf.php");
 ?>
 <html>
 <head>
-<title>The Debian CDBS Packages Project</title>
+	<title>The Debian CDBS Packages Project</title>
 </head>
 <body>
 <p>
-<h1>The Debian CDBS Packages Project</h1>
+	<h1>The Debian CDBS Packages Project</h1>
 </p>
 <p>
 This is the homepage for the Debian CDBS Packages Project. The following packages are available for download by clicking on their name. 
