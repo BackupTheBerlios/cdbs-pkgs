@@ -2,21 +2,26 @@
 
 /* CDBS Packages Index Page
  *
- * $Id: index.php,v 1.1 2003/12/12 17:27:50 asg Exp $
+ * $Id: index.php,v 1.2 2003/12/12 23:27:58 asg Exp $
  */
 
 //Include Credentials
 include("../conf/conf.php");
 ?>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <title>The Debian CDBS Packages Project</title>
 </head>
 <body>
-<hr />
-<center>
-	<table border='1'>
+<p>
+<h1>The Debian CDBS Packages Project</h1>
+</p>
+<p>
+This is the homepage for the Debian CDBS Packages Project. The following packages are available for download by clicking on their name. 
+</p>
+<table border='0'>
 <?
 //Connect to database or print a nice 'unavailable' message
 if($dbh = mysql_connect($DBSERVER, $DBUSER, $DBPASS)) {
@@ -97,7 +102,23 @@ if($dbh = mysql_connect($DBSERVER, $DBUSER, $DBPASS)) {
 }
 ?>
 	</table>
-</center>
+<p>
+Alternately, you can use the following <strong>apt</strong> sources.
+</p>
+<p>
+<i>deb http://cdbs-pkgs.berlios.de/debian/ stable main contrib non-free</i><br />
+<i>deb http://cdbs-pkgs.berlios.de/debian/ testing main contrib non-free</i><br />
+<i>deb http://cdbs-pkgs.berlios.de/debian/ unstable main contrib non-free</i><br />
+</p>
 <hr />
+<div align='left'>
+	Copyright &copy; 2003-2004 <a href='mailto:beta3@users.berlios.de'>Dan Weber</a>
+</div>
+<div align='right'>
+	Hosted By<br />
+	<a href='http://developer.berlios.de'>
+		<img src='http://developer.berlios.de/bslogo.php?group_id=0&type=1' width='124' height='32' border='0' alt='BerliOS Logo' />
+	</a>
+</div>
 </body>
 </html>
