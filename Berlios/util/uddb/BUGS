@@ -1,0 +1,8 @@
+#
+# BUGS List (uddb)
+#
+# $Id: BUGS,v 1.1 2003/12/09 16:43:14 asg Exp $
+#
+
+* presuposes the Packages files are consistent (no extra blanks)
+* presuposes the Packages file ends in a blank line

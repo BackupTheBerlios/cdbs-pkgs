@@ -1,0 +1,19 @@
+#
+# uddb -- Update A MySQL Database with information from debian Packages Files
+#
+# $Id: README,v 1.1 2003/12/09 16:43:14 asg Exp $
+
+INSTALLATION
+
+	1)	place 'uddb' in some directory and give it execute privileges.
+	2)  edit the 'uddb' script and fill in the following variables with
+		relevant values:
+
+			REPO_ROOT
+			SERVER
+			DATABASE
+			DBLOGIN
+			DBPASS
+
+	3)	create the database table using the provides uddb.sql script (sql/uddb.sql)
+	4)	run 'uddb' via cron to update the database with package information periodically
