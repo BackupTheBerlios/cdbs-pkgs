@@ -3,7 +3,7 @@
 
 /* CDBS Packages Index Page
  *
- * $Id: index.php,v 1.5 2003/12/13 00:30:36 asg Exp $
+ * $Id: index.php,v 1.6 2003/12/13 00:34:29 asg Exp $
  */
 
 //Include Credentials
@@ -14,9 +14,7 @@ include("./conf/conf.php");
 	<title>The Debian CDBS Packages Project</title>
 </head>
 <body>
-<p>
-	<h1>The Debian CDBS Packages Project</h1>
-</p>
+<h1>The Debian CDBS Packages Project</h1>
 <p>
 This is the homepage for the Debian CDBS Packages Project. The following packages are available for download by clicking on their name. 
 </p>
@@ -116,7 +114,7 @@ Alternately, you can use the following <strong>apt</strong> sources.
 <div align='right'>
 	Hosted By<br />
 	<a href='http://developer.berlios.de'>
-		<img src='http://developer.berlios.de/bslogo.php?group_id=0&type=1' width='124' height='32' border='0' alt='BerliOS Logo' />
+		<img src='http://developer.berlios.de/bslogo.php?group_id=0&amp;type=1' width='124' height='32' border='0' alt='BerliOS Logo' />
 	</a>
 </div>
 </body>
