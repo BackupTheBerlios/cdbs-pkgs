@@ -3,7 +3,7 @@
 
 /* CDBS Packages Index Page
  *
- * $Id: index.php,v 1.7 2003/12/13 01:24:52 beta3 Exp $
+ * $Id: index.php,v 1.8 2003/12/13 01:27:39 beta3 Exp $
  */
 
 //Include Credentials
@@ -104,8 +104,11 @@ Alternately, you can use the following <strong>apt</strong> sources.
 </p>
 <p>
 <i>deb http://cdbs-pkgs.berlios.de/debian/ stable main contrib non-free</i><br />
-<i>deb http://cdbs-pkgs.berlios.de/debian/ testing main contrib non-free</i><br />
+/*<i>deb http://cdbs-pkgs.berlios.de/debian/ testing main contrib non-free</i><br />*/
+<i>deb-src http://cdbs-pkgs.berlios.de/debian/ stable main contrib non-free</i><br />
 <i>deb http://cdbs-pkgs.berlios.de/debian/ unstable main contrib non-free</i><br />
+<i>deb-src http://cdbs-pkgs.berlios.de/debian/ unstable main contrib non-free</i><br />
+
 </p>
 <hr />
 <div align='left'>
