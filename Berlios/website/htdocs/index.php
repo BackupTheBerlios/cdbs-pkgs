@@ -3,13 +3,12 @@
 
 /* CDBS Packages Index Page
  *
- * $Id: index.php,v 1.3 2003/12/12 23:58:57 asg Exp $
+ * $Id: index.php,v 1.4 2003/12/13 00:19:55 asg Exp $
  */
 
 //Include Credentials
-include("../conf/conf.php");
+include("./conf/conf.php");
 ?>
-
 <html>
 <head>
 <title>The Debian CDBS Packages Project</title>
