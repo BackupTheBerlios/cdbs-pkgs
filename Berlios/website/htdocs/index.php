@@ -1,15 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?
 
 /* CDBS Packages Index Page
  *
- * $Id: index.php,v 1.2 2003/12/12 23:27:58 asg Exp $
+ * $Id: index.php,v 1.3 2003/12/12 23:58:57 asg Exp $
  */
 
 //Include Credentials
 include("../conf/conf.php");
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <title>The Debian CDBS Packages Project</title>
