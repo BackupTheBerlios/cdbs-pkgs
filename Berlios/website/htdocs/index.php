@@ -3,7 +3,7 @@
 
 /* CDBS Packages Index Page
  *
- * $Id: index.php,v 1.6 2003/12/13 00:34:29 asg Exp $
+ * $Id: index.php,v 1.7 2003/12/13 01:24:52 beta3 Exp $
  */
 
 //Include Credentials
@@ -109,7 +109,7 @@ Alternately, you can use the following <strong>apt</strong> sources.
 </p>
 <hr />
 <div align='left'>
-	Copyright &copy; 2003-2004 <a href='mailto:beta3@users.berlios.de'>Dan Weber</a>
+	Copyright &copy; 2003-2004 <a href='mailto:cdbs-pkgs-devel@lists.berlios.de'>CDBS Packaging Team</a>
 </div>
 <div align='right'>
 	Hosted By<br />
